@@ -326,8 +326,8 @@ ProductDetail
   width: 14px;
   height: 14px;
   position: absolute;
-  top: 24px;
-  left: 24px;
+  top: 30px;
+  left: 10px;
   z-index: 2;
   padding: 12px;
   border-radius: 50%;
@@ -340,6 +340,7 @@ ProductDetail
   height: 360px;
   object-fit: cover;
   border-radius: 20px;
+  margin-top: 20px;
 }
 #productDetail .product-info {
   margin: 24px 24px 0 24px;

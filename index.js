@@ -5,10 +5,13 @@ const desktopMenu = document.querySelector(".desktop-menu");
 const mobileMenu = document.querySelector(".mobile-menu");
 const shoppingCartContainer = document.querySelector("#shoppingCartContainer");
 const cardContainer = document.querySelector(".cards-container");
+const productDetailContainer = document.querySelector("#productDetail");
+const productDetailCloseIcon = document.querySelector(".detail-close");
 
 menuEmail.addEventListener("click", toggleDesktopMenu);
 menuHamIcon.addEventListener("click", toggleMobileMenu);
 menuCarritoIcon.addEventListener("click", toggleCarritoAside);
+productDetailCloseIcon.addEventListener("click", closeProductDetailAside);
 
 function toggleDesktopMenu() {
   const isAsideClosed = shoppingCartContainer.classList.contains("inactive");
@@ -22,19 +25,37 @@ function toggleDesktopMenu() {
 
 function toggleMobileMenu() {
   const isAsideClosed = shoppingCartContainer.classList.contains("inactive");
+  const isProductDetailAside =
+    productDetailContainer.classList.contains("inactive");
 
   if (!isAsideClosed) {
     shoppingCartContainer.classList.add("inactive");
   }
-
+  if (!isProductDetailAside) {
+    productDetailContainer.classList.add("inactive");
+  }
   mobileMenu.classList.toggle("inactive");
+}
+
+function closeProductDetailAside() {
+  productDetailContainer.classList.add("inactive");
+}
+
+function openProductDetailAside() {
+  shoppingCartContainer.classList.add("inactive");
+  productDetailContainer.classList.remove("inactive");
 }
 
 function toggleCarritoAside() {
   const isMobileMenuClosed = mobileMenu.classList.contains("inactive");
+  const isProductDetailAside =
+    productDetailContainer.classList.contains("inactive");
 
   if (!isMobileMenuClosed) {
     mobileMenu.classList.add("inactive");
+  }
+  if (!isProductDetailAside) {
+    productDetailContainer.classList.add("inactive");
   }
 
   shoppingCartContainer.classList.toggle("inactive");
@@ -70,6 +91,7 @@ function renderProducts(arr) {
     const productImg1 = document.createElement("img");
     //Se establece el atributo src con el valor de clave product.image
     productImg1.setAttribute("src", product.image);
+    productImg1.addEventListener("click", openProductDetailAside);
     //Se crea el hijo del div product card, que es un img
     productCard.appendChild(productImg1);
     //Se crea el elemento div de product info
